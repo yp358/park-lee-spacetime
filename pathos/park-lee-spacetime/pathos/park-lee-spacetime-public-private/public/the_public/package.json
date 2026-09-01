@@ -1,0 +1,9 @@
+{
+  "name": "the-public-site",
+  "version": "1.0.0",
+  "description": "The Public - Constitutional Web Application",
+  "scripts": {
+    "dev": "node ../../../../../server.js",
+    "start": "node ../../../../../server.js"
+  }
+}

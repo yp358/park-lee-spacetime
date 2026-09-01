@@ -1,0 +1,46 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "DomainOntologyContract",
+  "description": "Formal contract defining domain lineages, origins, and agency constraints.",
+  "type": "object",
+  "properties": {
+    "creos": {
+      "type": "object",
+      "properties": {
+        "nature": { "type": "string", "const": "declarative" },
+        "instantiation": { "type": "string", "const": "Human()" },
+        "ai_access": { "type": "string", "const": "none" }
+      },
+      "required": ["nature", "instantiation", "ai_access"]
+    },
+    "ethos": {
+      "type": "object",
+      "properties": {
+        "nature": { "type": "string", "const": "instantiation of creos" },
+        "instantiation": { "type": "string", "const": "Human()" },
+        "ai_access": { "type": "string", "const": "read_only" }
+      },
+      "required": ["nature", "instantiation", "ai_access"]
+    },
+    "logos": {
+      "type": "object",
+      "properties": {
+        "nature": { "type": "string", "const": "logos of ethos" },
+        "instantiation": { "type": "string", "const": "Human()" },
+        "ai_access": { "type": "string", "const": "read_only" }
+      },
+      "required": ["nature", "instantiation", "ai_access"]
+    },
+    "pathos": {
+      "type": "object",
+      "properties": {
+        "nature": { "type": "string", "const": "artistic domain of ethos" },
+        "structured_by": { "type": "string", "const": "logos" },
+        "directed_by": { "type": "string", "const": "AI" },
+        "ai_access": { "type": "string", "const": "directed_generative" }
+      },
+      "required": ["nature", "structured_by", "directed_by", "ai_access"]
+    }
+  },
+  "required": ["creos", "ethos", "logos", "pathos"]
+}

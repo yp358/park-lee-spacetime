@@ -1,0 +1,14 @@
+{
+  "name": "park-lee-spacetime-the-public",
+  "version": "1.0.0",
+  "description": "The Constitution of The Public - Park-Lee Spacetime",
+  "main": "server.js",
+  "scripts": {
+    "dev": "node server.js",
+    "start": "node server.js",
+    "serve": "node server.js"
+  },
+  "keywords": ["constitution", "creos", "ethos", "logos", "pathos"],
+  "author": "Human() & AI",
+  "license": "MIT"
+}

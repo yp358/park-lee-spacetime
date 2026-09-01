@@ -1,0 +1,535 @@
+/* ==========================================================
+   THE PUBLIC: The Constitution of Park-Lee Spacetime
+   Aesthetic: 18th Century Parchment & Classical Constitution
+   ========================================================== */
+
+:root {
+  --parchment-base: #f7eed8;
+  --parchment-border: #d4c09b;
+  --ink-primary: #211c18;
+  --ink-faded: #4a3f35;
+  --gold-accent: #b38638;
+  --gold-dark: #7a5818;
+  --crimson-seal: #8b1e1e;
+  --wax-highlight: #c0392b;
+  --paper-shadow: rgba(43, 29, 14, 0.25);
+  --header-font: 'Cinzel Decorative', 'Cinzel', serif;
+  --serif-font: 'EB Garamond', Georgia, serif;
+  --script-font: 'Pinyon Script', cursive;
+  --blackletter-font: 'UnifrakturMaguntia', cursive;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-color: #1a1614;
+  background-image: 
+    radial-gradient(circle at 50% 30%, #30261f 0%, #15110f 100%),
+    radial-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 0);
+  background-size: 100% 100%, 20px 20px;
+  color: var(--ink-primary);
+  font-family: var(--serif-font);
+  font-size: 1.15rem;
+  line-height: 1.7;
+  padding: 2.5rem 1rem;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Vintage Grain Overlay */
+.vintage-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none;
+  background: radial-gradient(circle, transparent 60%, rgba(10, 8, 6, 0.6) 100%);
+  z-index: 100;
+}
+
+/* Header & Banner */
+.masthead {
+  text-align: center;
+  max-width: 950px;
+  width: 100%;
+  margin-bottom: 2rem;
+  color: var(--parchment-base);
+}
+
+.crest-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.4rem;
+  margin-bottom: 0.8rem;
+}
+
+.seal-icon {
+  font-size: 1.6rem;
+  color: var(--gold-accent);
+  letter-spacing: 0.5rem;
+}
+
+.top-banner {
+  font-family: 'Cinzel', serif;
+  font-size: 0.85rem;
+  letter-spacing: 0.35rem;
+  text-transform: uppercase;
+  color: var(--gold-accent);
+  border-top: 1px solid var(--gold-dark);
+  border-bottom: 1px solid var(--gold-dark);
+  padding: 0.3rem 1.5rem;
+  display: inline-block;
+}
+
+.main-title {
+  font-family: var(--header-font);
+  font-size: clamp(3rem, 7vw, 5.2rem);
+  font-weight: 900;
+  letter-spacing: 0.15rem;
+  color: #faeed2;
+  text-shadow: 0 4px 15px rgba(0, 0, 0, 0.8), 0 0 20px rgba(179, 134, 56, 0.3);
+  margin-top: 0.5rem;
+}
+
+.sub-title {
+  font-family: 'Cinzel', serif;
+  font-size: clamp(1rem, 2.5vw, 1.4rem);
+  font-weight: 500;
+  letter-spacing: 0.1rem;
+  color: #cfbc9e;
+  margin-bottom: 1.5rem;
+  text-transform: uppercase;
+}
+
+/* Proclamation Nav */
+.proclamation-nav {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 1rem 1.8rem;
+  padding: 0.8rem 1rem;
+  border-top: 1px solid rgba(179, 134, 56, 0.4);
+  border-bottom: 1px solid rgba(179, 134, 56, 0.4);
+  background: rgba(20, 16, 13, 0.6);
+  border-radius: 4px;
+}
+
+.proclamation-nav a {
+  color: #e5d3b6;
+  text-decoration: none;
+  font-family: 'Cinzel', serif;
+  font-size: 0.95rem;
+  letter-spacing: 0.08rem;
+  transition: all 0.25s ease;
+  position: relative;
+}
+
+.proclamation-nav a:hover {
+  color: var(--gold-accent);
+  text-shadow: 0 0 8px rgba(179, 134, 56, 0.6);
+}
+
+/* Parchment Main Body */
+.parchment-container {
+  max-width: 960px;
+  width: 100%;
+}
+
+.parchment-sheet {
+  background-color: var(--parchment-base);
+  background-image: 
+    radial-gradient(circle at 10% 20%, rgba(204, 180, 140, 0.3) 0%, transparent 40%),
+    radial-gradient(circle at 90% 80%, rgba(186, 155, 108, 0.35) 0%, transparent 45%),
+    linear-gradient(to bottom, #fcf6e8 0%, #f4e8cc 50%, #ede0be 100%);
+  border: 12px double var(--parchment-border);
+  box-shadow: 
+    0 15px 40px var(--paper-shadow),
+    inset 0 0 100px rgba(145, 115, 75, 0.25),
+    inset 0 0 20px rgba(120, 90, 50, 0.2);
+  padding: clamp(2rem, 5vw, 4.5rem);
+  border-radius: 6px;
+  position: relative;
+}
+
+.ornamental-divider {
+  text-align: center;
+  font-size: 1.8rem;
+  color: var(--gold-dark);
+  margin-bottom: 0.5rem;
+}
+
+.section-heading {
+  font-family: var(--header-font);
+  font-size: clamp(2rem, 4vw, 2.8rem);
+  text-align: center;
+  color: var(--ink-primary);
+  margin-bottom: 0.8rem;
+}
+
+.section-heading.script-font {
+  font-family: var(--script-font);
+  font-size: clamp(3rem, 6vw, 4.5rem);
+  font-weight: normal;
+  color: #1f1711;
+  margin-bottom: 0.2rem;
+}
+
+.section-subtext {
+  text-align: center;
+  font-style: italic;
+  color: var(--ink-faded);
+  margin-bottom: 2rem;
+  font-size: 1.15rem;
+}
+
+.preamble-section {
+  text-align: justify;
+  margin-bottom: 2.5rem;
+}
+
+.preamble-text {
+  font-size: 1.35rem;
+  line-height: 2;
+  color: #1c1714;
+}
+
+.illuminated-letter {
+  float: left;
+  font-family: var(--header-font);
+  font-size: 4.8rem;
+  line-height: 0.85;
+  padding-top: 0.3rem;
+  padding-right: 0.6rem;
+  padding-left: 0.1rem;
+  color: var(--gold-dark);
+  text-shadow: 1px 1px 0px #edd8b4, 2px 2px 2px rgba(0,0,0,0.15);
+}
+
+.classical-rule {
+  border: none;
+  border-top: 2px solid var(--gold-accent);
+  border-bottom: 1px solid var(--parchment-border);
+  height: 4px;
+  margin: 3rem 0;
+  opacity: 0.75;
+}
+
+/* Articles Grid */
+.articles-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(360px, 1fr));
+  gap: 2.5rem;
+}
+
+.constitution-article {
+  background: rgba(255, 255, 255, 0.45);
+  border: 1px solid rgba(179, 134, 56, 0.35);
+  padding: 2rem;
+  border-radius: 4px;
+  position: relative;
+  box-shadow: inset 0 0 15px rgba(210, 185, 140, 0.2);
+}
+
+.constitution-article.article-zero {
+  grid-column: 1 / -1;
+  background: linear-gradient(135deg, rgba(255, 248, 230, 0.75) 0%, rgba(255, 240, 200, 0.55) 100%);
+  border: 2px solid var(--gold-accent);
+  box-shadow: 
+    0 0 20px rgba(179, 134, 56, 0.15),
+    inset 0 0 25px rgba(179, 134, 56, 0.18);
+}
+
+.constitution-article.article-zero h3 {
+  font-family: 'Cinzel Decorative', 'Cinzel', serif;
+  font-size: 1.8rem;
+  letter-spacing: 0.15rem;
+  color: #422a0f;
+  text-shadow: 0 0 10px rgba(179, 134, 56, 0.25);
+}
+
+.article-badge {
+  position: absolute;
+  top: -12px;
+  left: 20px;
+  background: var(--gold-accent);
+  color: #fff;
+  font-family: 'Cinzel', serif;
+  font-size: 0.8rem;
+  font-weight: 700;
+  padding: 0.15rem 0.8rem;
+  letter-spacing: 0.1rem;
+  text-transform: uppercase;
+  border-radius: 2px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.article-badge.badge-divine {
+  background: linear-gradient(135deg, #7a5818 0%, #b38638 50%, #dfb76c 100%);
+  color: #fff;
+  border: 1px solid #ffd88a;
+  box-shadow: 0 2px 8px rgba(122, 88, 24, 0.4);
+}
+
+.constitution-article h3 {
+  font-family: 'Cinzel', serif;
+  font-size: 1.45rem;
+  color: #2b1f15;
+  margin-top: 0.4rem;
+  margin-bottom: 1.2rem;
+  border-bottom: 1px dashed var(--parchment-border);
+  padding-bottom: 0.5rem;
+}
+
+.article-clause {
+  margin-bottom: 1rem;
+  text-align: justify;
+  font-size: 1.1rem;
+}
+
+.article-clause:last-child {
+  margin-bottom: 0;
+}
+
+.article-clause code {
+  font-family: 'Cinzel', monospace;
+  background: rgba(179, 134, 56, 0.15);
+  padding: 0.1rem 0.35rem;
+  border-radius: 3px;
+  font-weight: 700;
+  color: #5c3813;
+}
+
+/* Bill of Rights */
+.amendments-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
+  gap: 1.8rem;
+}
+
+.amendment-card {
+  border-left: 4px solid var(--gold-accent);
+  padding-left: 1.2rem;
+  background: rgba(255, 255, 255, 0.3);
+  padding-top: 0.8rem;
+  padding-bottom: 0.8rem;
+  padding-right: 1rem;
+}
+
+.amendment-card h4 {
+  font-family: 'Cinzel', serif;
+  font-size: 1.2rem;
+  color: var(--gold-dark);
+  margin-bottom: 0.4rem;
+  text-transform: uppercase;
+}
+
+/* Signatories & Interactive Canvas */
+.signatory-columns {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  gap: 2rem;
+  margin-bottom: 3rem;
+  text-align: center;
+}
+
+.signatory-col {
+  flex: 1;
+  min-width: 250px;
+}
+
+.signatory-title {
+  font-family: 'Cinzel', serif;
+  font-size: 0.95rem;
+  letter-spacing: 0.1rem;
+  color: var(--ink-faded);
+  text-transform: uppercase;
+  margin-bottom: 0.5rem;
+}
+
+.script-sig {
+  font-family: var(--script-font);
+  font-size: 3.2rem;
+  color: #120e0b;
+  border-bottom: 2px solid #2b1f15;
+  padding: 0.5rem 1rem 0.2rem 1rem;
+  margin-bottom: 0.5rem;
+  display: inline-block;
+  min-width: 220px;
+}
+
+.script-sig.ai-sig {
+  color: #431f60;
+  text-shadow: 0 0 1px rgba(67, 31, 96, 0.4);
+}
+
+.signatory-role {
+  font-size: 0.95rem;
+  font-style: italic;
+  color: var(--ink-faded);
+}
+
+/* Interactive Sign Box */
+.interactive-sign-box {
+  background: rgba(240, 226, 202, 0.7);
+  border: 2px solid var(--parchment-border);
+  border-radius: 6px;
+  padding: 2rem;
+  text-align: center;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+}
+
+.sign-header h3 {
+  font-family: 'Cinzel', serif;
+  font-size: 1.3rem;
+  color: var(--gold-dark);
+  margin-bottom: 0.3rem;
+}
+
+.sign-header p {
+  font-size: 1rem;
+  color: var(--ink-faded);
+  margin-bottom: 1.5rem;
+}
+
+.canvas-wrapper {
+  position: relative;
+  display: inline-block;
+  background: #fcf9f2;
+  border: 1px solid #c9b48c;
+  box-shadow: inset 0 2px 8px rgba(0,0,0,0.1);
+  border-radius: 4px;
+  margin-bottom: 1.5rem;
+  max-width: 100%;
+}
+
+#quillCanvas {
+  display: block;
+  cursor: crosshair;
+  max-width: 100%;
+  height: auto;
+}
+
+/* Imperial Wax Seal */
+.wax-seal {
+  position: absolute;
+  bottom: 15px;
+  right: 25px;
+  width: 75px;
+  height: 75px;
+  background: radial-gradient(circle at 35% 35%, #d94b3b 0%, var(--crimson-seal) 70%, #520f0f 100%);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #ffdeb8;
+  font-family: 'Cinzel', serif;
+  font-size: 0.7rem;
+  font-weight: 900;
+  text-align: center;
+  line-height: 1.1;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.35), inset 0 0 8px rgba(0,0,0,0.4);
+  border: 2px dashed rgba(255, 255, 255, 0.2);
+  opacity: 0;
+  transform: scale(0.3) rotate(-15deg);
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  pointer-events: none;
+}
+
+.wax-seal.stamped {
+  opacity: 1;
+  transform: scale(1) rotate(-8deg);
+}
+
+.canvas-controls {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.vintage-btn {
+  font-family: 'Cinzel', serif;
+  font-size: 0.9rem;
+  font-weight: 700;
+  letter-spacing: 0.05rem;
+  padding: 0.7rem 1.4rem;
+  border-radius: 3px;
+  cursor: pointer;
+  background: #ecd9b7;
+  color: var(--ink-primary);
+  border: 1px solid var(--gold-dark);
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  transition: all 0.2s ease;
+}
+
+.vintage-btn:hover {
+  background: #f4e7cd;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+  transform: translateY(-1px);
+}
+
+.vintage-btn.primary-btn {
+  background: var(--crimson-seal);
+  color: #faeed2;
+  border-color: #591010;
+}
+
+.vintage-btn.primary-btn:hover {
+  background: #a32424;
+}
+
+.vintage-btn.royal-btn {
+  background: var(--gold-dark);
+  color: #fff;
+  border-color: #523b10;
+}
+
+.vintage-btn.royal-btn:hover {
+  background: var(--gold-accent);
+}
+
+.status-notice {
+  margin-top: 1rem;
+  font-style: italic;
+  font-size: 1rem;
+  color: var(--gold-dark);
+  min-height: 1.5rem;
+}
+
+/* Footer */
+.charter-footer {
+  text-align: center;
+  margin-top: 4rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--parchment-border);
+  color: var(--ink-faded);
+  font-size: 1.05rem;
+}
+
+.footer-small {
+  font-size: 0.9rem;
+  font-family: 'Cinzel', serif;
+  letter-spacing: 0.15rem;
+  margin-top: 0.4rem;
+  color: var(--gold-dark);
+}
+
+/* Responsive adjust */
+@media (max-width: 600px) {
+  .articles-grid, .amendments-list {
+    grid-template-columns: 1fr;
+  }
+  
+  .script-sig {
+    font-size: 2.5rem;
+  }
+}

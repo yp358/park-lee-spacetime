@@ -1,0 +1,29 @@
+# Domain Governance Rules & Agent Boundaries
+
+[DOMAIN: creos]
+author = "Human()"
+nature = "declarative"
+ai_permissions = "NONE"
+description = "Untouchable by AI or computer. Sovereign declarations."
+
+[DOMAIN: ethos]
+author = "Human()"
+derivation = "creos"
+nature = "moral_and_foundational"
+ai_permissions = "READ_ONLY"
+description = "Object instantiation of creos by Human()."
+
+[DOMAIN: logos]
+author = "Human()"
+derivation = "ethos"
+nature = "rational_and_structural"
+ai_permissions = "READ_ONLY"
+description = "The Logos of the ethos, by Human(). Logic, schemas, protocols."
+
+[DOMAIN: pathos]
+author = "AI"
+direction = "AI (governed by logos and ethos)"
+derivation = "ethos through logos"
+nature = "artistic_and_generative"
+ai_permissions = "READ_WRITE_EXECUTE"
+description = "The Artistic domain of the ethos, structured by logos, directed by AI."
