@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Kleio — an ontology workspace for small teams</title>
+<link rel="stylesheet" href="styles.css">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='7' fill='%234c90f0'/><text x='16' y='23' font-size='19' font-family='sans-serif' font-weight='700' fill='white' text-anchor='middle'>K</text></svg>">
+</head>
+<body>
+<div id="app">
+  <nav class="rail">
+    <div class="brand">
+      <div class="brand-mark"><span class="brand-glyph">K</span> Kleio</div>
+      <div class="brand-sub">Ontology workspace · SMB edition</div>
+    </div>
+    <div class="rail-scroll" id="rail-scroll"></div>
+    <div class="rail-foot">
+      <div id="foot-db">connecting…</div>
+    </div>
+  </nav>
+  <main class="main">
+    <header class="topbar">
+      <div class="crumbs" id="crumbs"></div>
+      <div class="topbar-right">
+        <span class="pill" id="conn"><span class="led"></span> local</span>
+      </div>
+    </header>
+    <section class="view" id="view"><div class="spin">Loading workspace…</div></section>
+  </main>
+</div>
+<div id="overlay"></div>
+<script src="app.js"></script>
+</body>
+</html>

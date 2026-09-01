@@ -1,0 +1,41 @@
+{
+  "generated_at": "2026-09-01T04:35:20+00:00",
+  "population_N": 1127558,
+  "sample_n": 30000,
+  "fraction": 0.026606,
+  "fraction_pct": 2.661,
+  "seed": 20260901,
+  "method": "simple random sample without replacement (random.Random(seed).sample)",
+  "works_represented": 2126,
+  "by_corpus": {
+    "canonical-greekLit": 12083,
+    "canonical-latinLit": 10386,
+    "First1KGreek": 7531
+  },
+  "by_language": {
+    "grc": 15334,
+    "lat": 7335,
+    "eng": 6995,
+    "und": 132,
+    "ger": 99,
+    "fre": 39,
+    "mul": 38,
+    "ita": 27,
+    "ara": 1
+  },
+  "corpus_revisions": {
+    "canonical-greekLit": "a1849c8f50622ebaa77926f09c81c05c3b3b23af",
+    "canonical-latinLit": "0416bbecc6e882611eda7b71ca4e5d5edbe1c627",
+    "First1KGreek": "7881c563436f52fb3550e6daa6df94be1b83b0e3"
+  },
+  "population_by_corpus": {
+    "canonical-greekLit": 454768,
+    "canonical-latinLit": 390866,
+    "First1KGreek": 281924
+  },
+  "population_editions_by_corpus": {
+    "canonical-greekLit": 1612,
+    "canonical-latinLit": 632,
+    "First1KGreek": 1198
+  }
+}

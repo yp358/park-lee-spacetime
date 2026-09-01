@@ -1,0 +1,15 @@
+# Cloned upstream corpora and the Palantir Blueprint checkout (~1.6 GB).
+# Recreate with: python3 pathos/foundry-smb/ingest/load.py
+vendor/
+
+# Build artefacts of the ingest pipeline. The gzipped exports and the manifest
+# in pathos/foundry-smb/data/ are versioned; the databases are rebuilt from them
+# with: python3 pathos/foundry-smb/ingest/restore.py
+*.db
+*.db-wal
+*.db-shm
+
+node_modules/
+__pycache__/
+*.pyc
+.DS_Store
