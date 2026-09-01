@@ -54,6 +54,7 @@ const NAV = [
     { id: "home", label: "Overview", color: "var(--blue4)" },
     { id: "lineage", label: "Data lineage", color: "var(--cerulean4)" },
     { id: "ontology", label: "Ontology manager", color: "var(--indigo4)" },
+    { id: "figures", label: "Figures", color: "var(--turquoise3)" },
   ]},
 ];
 
@@ -631,6 +632,18 @@ function viewPlaybook() {
           el("li", {}, el("strong", {}, "A workshop: "), "Job, Part, Supplier — lineage shows which price list a quote used."))))));
 }
 
+/* ---------- view: figures ------------------------------------------------- */
+/* The interactive figure canvas lives in figures.js so this file stays about
+ * the ontology. It renders itself into whatever container it is handed and
+ * cancels its own animation frame when the node leaves the document. */
+function viewFigures() {
+  crumbs("Kleio", "Figures");
+  const view = $("#view");
+  view.innerHTML = "";
+  if (window.KleioFigures) window.KleioFigures.render(view);
+  else view.append(el("div", { class: "empty" }, "figures.js failed to load"));
+}
+
 /* ---------- router ---------------------------------------------------------- */
 function go(path) { location.hash = "#/" + path; }
 
@@ -650,6 +663,7 @@ async function render() {
     if (parts[0] === "explore" && parts[1]) await viewExplore(parts[1], params);
     else if (parts[0] === "ontology") viewOntology();
     else if (parts[0] === "lineage") viewLineage();
+    else if (parts[0] === "figures") viewFigures();
     else if (parts[0] === "playbook") viewPlaybook();
     else viewHome();
   } catch (e) {

@@ -374,10 +374,103 @@ td.clip { max-width: 460px; overflow: hidden; text-overflow: ellipsis; white-spa
 ul.tight { margin: 8px 0 0; padding-left: 18px; }
 ul.tight li { margin-bottom: 5px; color: var(--muted); font: 12.5px var(--serif); }
 
+/* ---- figures ------------------------------------------------------------- */
+.fig-shell { display: grid; grid-template-columns: 340px 1fr; gap: 14px; align-items: start; }
+.fig-side .card-body { display: flex; flex-direction: column; gap: 12px; }
+.fig-preset {
+  margin-left: auto; height: 26px; border-radius: 0; background: var(--white);
+  border: 1px solid var(--ink); color: var(--ink); font: 11px var(--mono);
+  padding: 0 6px;
+}
+
+.fig-eq {
+  font: 15px/1.55 var(--math); color: var(--ink);
+  padding: 10px 12px; background: var(--white);
+  border: 1px solid var(--rule-soft); border-left: 2px solid var(--ink);
+  overflow-x: auto; white-space: nowrap;
+}
+.fig-eq .fig-map { color: var(--faint); margin: 0 4px; }
+.fig-eq .n { font: 12px var(--mono); color: var(--blueprint); }
+.fig-note { font: italic 12px/1.5 var(--serif); color: var(--muted); }
+
+.fig-rows { display: flex; flex-direction: column; gap: 10px; }
+.fig-row { display: grid; grid-template-columns: 13px 1fr 22px; gap: 8px; align-items: center; }
+.fig-swatch { width: 13px; height: 13px; padding: 0; border: 1px solid var(--ink);
+  box-shadow: var(--stamp); }
+.fig-swatch.off { background: var(--surface) !important; box-shadow: none; opacity: .5; }
+.fig-src {
+  width: 100%; font: 12.5px var(--mono); color: var(--ink);
+  background: var(--white); border: 1px solid var(--ink); padding: 5px 7px;
+}
+.fig-src:focus { outline: 2px solid var(--blueprint); outline-offset: -1px; }
+.fig-del { width: 22px; height: 24px; padding: 0; border: 1px solid var(--rule-soft);
+  background: var(--white); color: var(--faint); font-size: 11px; }
+.fig-del:hover { background: var(--ink); color: var(--paper); border-color: var(--ink); }
+.fig-row-opts { grid-column: 2 / 4; display: flex; gap: 4px; flex-wrap: wrap; }
+.fig-row-opts button {
+  font: 9.5px var(--mono); text-transform: uppercase; letter-spacing: .06em;
+  padding: 2px 6px; border: 1px solid var(--rule-soft);
+  background: var(--white); color: var(--faint);
+}
+.fig-row-opts button.on { border-color: var(--ink); color: var(--ink); background: var(--surface); }
+.fig-err { grid-column: 1 / 4; font: 11px var(--mono); color: var(--red3); }
+
+.fig-range { display: flex; gap: 10px; }
+.fig-range label { flex: 1; display: flex; align-items: center; gap: 6px;
+  font: 10.5px var(--mono); color: var(--muted); }
+.fig-range input { width: 100%; font: 11px var(--mono); color: var(--ink);
+  background: var(--white); border: 1px solid var(--rule-soft); padding: 3px 5px; }
+
+.fig-params { display: flex; flex-direction: column; }
+.fig-param { border-top: 1px solid var(--rule-soft); padding-top: 9px; margin-top: 9px; }
+.fig-param:first-child { border-top: 0; margin-top: 0; }
+.fig-param-head { display: flex; align-items: baseline; gap: 8px; font: 11px var(--mono); }
+.fig-param-head code { border: 1px solid var(--rule-soft); background: var(--surface);
+  padding: 0 4px; color: var(--ink); }
+.fig-param-head span { color: var(--muted); }
+.fig-param-head button { margin-left: auto; font: 9px var(--mono);
+  text-transform: uppercase; letter-spacing: .06em; padding: 2px 6px;
+  border: 1px solid var(--rule-soft); background: var(--white); color: var(--faint); }
+.fig-param-head button.on { border-color: var(--blueprint); color: var(--blueprint);
+  background: var(--blueprint-wash); }
+.fig-param-bounds { display: flex; gap: 6px; margin-top: 5px; }
+.fig-param-bounds input { width: 100%; font: 10px var(--mono); color: var(--muted);
+  background: var(--white); border: 1px solid var(--rule-soft); padding: 2px 4px; }
+
+.fig-toggles { display: flex; gap: 5px; flex-wrap: wrap; }
+.fig-toggles button {
+  font: 9.5px var(--mono); text-transform: uppercase; letter-spacing: .06em;
+  padding: 3px 7px; border: 1px solid var(--rule-soft);
+  background: var(--white); color: var(--faint);
+}
+.fig-toggles button.on { border-color: var(--ink); color: var(--ink); background: var(--surface); }
+
+.fig-readout { margin: 0; padding-top: 9px; border-top: 1px solid var(--rule-soft);
+  font: 11px/1.7 var(--mono); color: var(--muted); white-space: pre-wrap; }
+
+.fig-canvas { padding: 0; overflow: hidden; display: flex; flex-direction: column; }
+#fig-svg {
+  display: block; width: 100%; height: min(66vh, 640px);
+  background: var(--white); touch-action: none; cursor: grab;
+}
+.fig-transport {
+  display: flex; align-items: center; gap: 10px; flex-wrap: wrap;
+  padding: 8px 12px; border-top: 1.5px solid var(--ink);
+  background: var(--surface); font: 11px var(--mono); color: var(--muted);
+}
+.fig-transport .btn { height: 26px; padding: 0 10px; min-width: 78px; }
+.fig-transport label { display: flex; align-items: center; gap: 6px; }
+#fig-scrub { flex: 1; min-width: 140px; }
+#fig-speed { width: 84px; }
+.fig-transport input[type=range] { accent-color: var(--blueprint); }
+.fig-side input[type=range] { width: 100%; accent-color: var(--blueprint); }
+.fig-t { min-width: 84px; color: var(--ink); }
+
 @media (max-width: 1080px) {
   #app { grid-template-columns: 56px 1fr; }
   .brand-sub, .nav-item span.txt, .rail-foot, .rail-group { display: none; }
   .explorer { grid-template-columns: 1fr; }
   .lineage { grid-template-columns: 1fr; }
   .lane + .lane { border-left: 0; border-top: 1px dashed var(--rule-soft); }
+  .fig-shell { grid-template-columns: 1fr; }
 }
