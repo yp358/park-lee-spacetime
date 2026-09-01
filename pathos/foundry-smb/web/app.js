@@ -136,7 +136,7 @@ function donut(rows, colors) {
   const t = document.createElementNS(ns, "text");
   t.setAttribute("x", 70); t.setAttribute("y", 74);
   t.setAttribute("text-anchor", "middle");
-  t.setAttribute("fill", "#f6f7f9");
+  t.setAttribute("fill", "#15150f");
   t.setAttribute("font-size", "17"); t.setAttribute("font-weight", "600");
   t.setAttribute("font-family", "var(--sans)");
   t.textContent = num(total);
@@ -159,7 +159,7 @@ function kpi(label, value, unit, foot, accent) {
 }
 
 /* ---------- view: overview ------------------------------------------------- */
-const CORPUS_COLORS = ["#4c90f0", "#7961db", "#00a396", "#f0b726"];
+const CORPUS_COLORS = ["#2b5c9b", "#5b4e88", "#2f7d75", "#8a6d1f"];
 
 function viewHome() {
   crumbs("Kleio", "Overview");
