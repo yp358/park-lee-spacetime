@@ -98,53 +98,6 @@ function crumbs(...parts) {
   });
 }
 
-/* ---------- charts (hand-rolled; no CDN, works offline) -------------------- */
-function barChart(rows, { color = "var(--blue4)", format = num, label = (r) => r.label } = {}) {
-  const max = Math.max(1, ...rows.map((r) => r.value));
-  return el("div", { class: "bars" },
-    rows.map((r) =>
-      el("div", {},
-        el("div", { class: "bar-label" },
-          el("span", {}, label(r)),
-          el("span", { style: "font-family:var(--mono);color:var(--gray3)" }, format(r.value))),
-        el("div", { class: "bar-track" },
-          el("div", { class: "bar-fill",
-            style: `width:${(100 * r.value) / max}%;background:${typeof color === "function" ? color(r) : color}` })))));
-}
-
-function donut(rows, colors) {
-  const total = rows.reduce((a, r) => a + r.value, 0) || 1;
-  const R = 52, C = 2 * Math.PI * R;
-  let offset = 0;
-  const ns = "http://www.w3.org/2000/svg";
-  const svg = document.createElementNS(ns, "svg");
-  svg.setAttribute("viewBox", "0 0 140 140");
-  svg.setAttribute("width", "140");
-  svg.setAttribute("height", "140");
-  rows.forEach((r, i) => {
-    const len = (r.value / total) * C;
-    const circle = document.createElementNS(ns, "circle");
-    circle.setAttribute("cx", 70); circle.setAttribute("cy", 70); circle.setAttribute("r", R);
-    circle.setAttribute("fill", "none");
-    circle.setAttribute("stroke", colors[i % colors.length]);
-    circle.setAttribute("stroke-width", 17);
-    circle.setAttribute("stroke-dasharray", `${len} ${C - len}`);
-    circle.setAttribute("stroke-dashoffset", -offset);
-    circle.setAttribute("transform", "rotate(-90 70 70)");
-    svg.append(circle);
-    offset += len;
-  });
-  const t = document.createElementNS(ns, "text");
-  t.setAttribute("x", 70); t.setAttribute("y", 74);
-  t.setAttribute("text-anchor", "middle");
-  t.setAttribute("fill", "#15150f");
-  t.setAttribute("font-size", "17"); t.setAttribute("font-weight", "600");
-  t.setAttribute("font-family", "var(--sans)");
-  t.textContent = num(total);
-  svg.append(t);
-  return svg;
-}
-
 function card(title, hint, ...body) {
   return el("div", { class: "card" },
     el("div", { class: "card-head" }, el("h3", {}, title),
@@ -152,15 +105,18 @@ function card(title, hint, ...body) {
     el("div", { class: "card-body" }, ...body));
 }
 
-function kpi(label, value, unit, foot, accent) {
-  return el("div", { class: "card kpi" + (accent ? " accent" : "") },
-    el("div", { class: "label" }, label),
-    el("div", { class: "value" }, value, unit ? el("small", {}, " " + unit) : null),
-    foot ? el("div", { class: "foot" }, foot) : null);
-}
-
 /* ---------- view: overview ------------------------------------------------- */
-const CORPUS_COLORS = ["#2b5c9b", "#5b4e88", "#2f7d75", "#8a6d1f"];
+/* Not a dashboard. Of everything /api/metrics returns, these are the only
+ * three facts that change how you'd use this corpus — the sampling design,
+ * the class imbalance, and the grain + provenance. Everything else the old
+ * page showed (raw counts, char totals, editions parsed) was descriptive
+ * and didn't change a decision, so it isn't here. */
+function finding(claim, evidence, action) {
+  return el("div", { class: "card finding" },
+    el("div", { class: "finding-claim" }, claim),
+    el("div", { class: "finding-evidence" }, evidence),
+    action ? el("button", { class: "btn", onclick: action.onclick }, action.label) : null);
+}
 
 function viewHome() {
   crumbs("Kleio", "Overview");
@@ -168,68 +124,33 @@ function viewHome() {
   const view = $("#view");
   view.innerHTML = "";
 
-  view.append(el("div", { class: "view-head" },
-    el("h1", {}, "Classical corpus workspace"),
-    el("p", {}, "A working ontology over the Perseus and Open Greek and Latin corpora. " +
-      "The full warehouse holds " + num(s.population_n) + " citable passages; this workspace " +
-      "runs on a seeded random sample of " + num(s.sample_n) + " so the whole thing fits " +
-      "on a laptop and every number below is reproducible.")));
+  view.append(el("div", { class: "view-head" }, el("h1", {}, "Classical corpus workspace")));
 
-  view.append(el("div", { class: "grid g-kpi" },
-    kpi("Sample", num(s.sample_n), "passages", `${pct(s.fraction, 3)} of the population`, true),
-    kpi("Population", num(s.population_n), "passages", `${num(m.ingest.editions)} editions parsed`),
-    kpi("Works represented", num(m.counts.Work), "", "editions with ≥1 sampled passage"),
-    kpi("Authors", num(m.counts.Author), "", "derived object type"),
-    kpi("Words sampled", num(m.totals.words), "", num(m.totals.chars) + " characters")));
+  const grc = m.by_language.find((r) => r.label === "grc");
+  const grcShare = grc ? grc.value / s.sample_n : 0;
+  const top = m.top_authors[0];
+  const topShare = top ? top.value / s.sample_n : 0;
+  // find the shortest passage-length bucket by its upper bound, not by array
+  // position, so this keeps working if the API ever reorders the buckets
+  const shortBucket = m.passage_length
+    .map((r) => ({ ...r, hi: parseInt(String(r.label).split(/[-–]/).pop(), 10) }))
+    .filter((r) => !isNaN(r.hi))
+    .sort((a, b) => a.hi - b.hi)[0];
+  const shortShare = shortBucket ? shortBucket.value / s.sample_n : 0;
 
-  const corpusRows = m.by_corpus.map((r) => ({ ...r }));
-  view.append(el("div", { class: "grid g-2 mt" },
-    card("Where the sample came from", "by source corpus",
-      el("div", { style: "display:flex;gap:20px;align-items:center;flex-wrap:wrap" },
-        donut(corpusRows, CORPUS_COLORS),
-        el("div", { style: "flex:1;min-width:190px" },
-          corpusRows.map((r, i) => el("div", { class: "legend-item", style: "margin-bottom:9px" },
-            el("span", { class: "swatch", style: `background:${CORPUS_COLORS[i % 4]}` }),
-            el("span", {}, r.label),
-            el("span", { style: "margin-left:auto;font-family:var(--mono);color:var(--gray3)" },
-              num(r.value)))))))
-    ,
-    card("Languages in the sample", "passage count",
-      barChart(m.by_language.map((r) => ({ ...r, label: langName(r.label) })),
-        { color: "var(--turquoise3)" }))));
-
-  view.append(el("div", { class: "grid g-2 mt" },
-    card("Most represented authors", "click to explore",
-      el("div", { class: "bars" },
-        m.top_authors.map((r) =>
-          el("div", { style: "cursor:pointer",
-            onclick: () => go(`explore/Author?q=${encodeURIComponent(r.label)}`) },
-            el("div", { class: "bar-label" },
-              el("span", {}, r.label),
-              el("span", { style: "font-family:var(--mono);color:var(--gray3)" },
-                `${num(r.value)} · ${r.work_count} works`)),
-            el("div", { class: "bar-track" },
-              el("div", { class: "bar-fill",
-                style: `width:${(100 * r.value) / m.top_authors[0].value}%;background:var(--indigo4)` })))))),
-    card("Passage length", "words per citable unit",
-      barChart(m.passage_length, { color: "var(--green4)" }))));
-
-  view.append(el("div", { class: "grid g-2 mt" },
-    card("Provenance", "how this dataset was produced",
-      el("dl", { class: "props" },
-        [
-          ["Connector", m.ingest.source_kind],
-          ["Ingested", (m.ingest.finished_at || "").replace("T", " ")],
-          ["Editions parsed", num(m.ingest.editions)],
-          ["Sampling", s.method],
-          ["Seed", String(s.seed)],
-          ["Fraction", `${pct(s.fraction, 3)} (n = ${num(s.sample_n)}, N = ${num(s.population_n)})`],
-        ].flatMap(([k, v]) => [el("dt", {}, k), el("dd", {}, v || "—")]))),
-    card("Source corpora", "upstream revisions",
-      m.corpora.map((c) => el("div", { style: "margin-bottom:12px" },
-        el("div", { style: "font-weight:600" }, c.label),
-        el("div", { class: "urn", style: "margin-top:3px" }, c.repo, " @ ", (c.revision || "").slice(0, 10)),
-        el("div", { style: "color:var(--gray2);font-size:11.5px;margin-top:3px" }, c.license))))));
+  view.append(el("div", { class: "findings" },
+    finding(`Uniform ${pct(s.fraction, 2)} sample, seed ${s.seed}.`,
+      `n = ${num(s.sample_n)} · N = ${num(s.population_n)} · ${s.method}`,
+      { label: "See lineage →", onclick: () => go("lineage") }),
+    finding(`${langName("grc")} and one author dominate.`,
+      `${langName("grc")} ${pct(grcShare, 0)} of rows · ` +
+        (top ? `${top.label} ${pct(topShare, 1)} of rows · ` : "") +
+        `${num(m.counts.Author)} authors total`,
+      { label: "See authors →", onclick: () => go("explore/Author") }),
+    finding("Short passages; every row traces back.",
+      (shortBucket ? `${pct(shortShare, 0)} of passages ≤ ${shortBucket.hi} words · ` : "") +
+        "full TEI provenance for every row",
+      { label: "See lineage →", onclick: () => go("lineage") })));
 }
 
 /* ---------- view: explorer ------------------------------------------------- */
