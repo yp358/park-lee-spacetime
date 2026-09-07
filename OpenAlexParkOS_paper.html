@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>OpenAlexParkOS: A Four-Tier Ontological Architecture for Sovereign-Directed, AI-Assisted Operating-Systems Pedagogy</title>
+<style>
+  :root {
+    --page-bg: #e7e7e7;
+    --paper-bg: #ffffff;
+    --ink: #1a1a1a;
+    --muted: #4a4a4a;
+    --rule: #222;
+    --accent-human: #2b4c7e;
+    --accent-human-line: #4a90e2;
+    --accent-ai: #6c3483;
+    --accent-ai-line: #bb8fce;
+    --table-line: #999;
+    --link: #0b3d91;
+  }
+  * { box-sizing: border-box; }
+  html, body {
+    background: var(--page-bg);
+    margin: 0;
+    padding: 0;
+    color: var(--ink);
+    font-family: "STIX Two Text", "Cambria", "Georgia", "Times New Roman", serif;
+  }
+  .page {
+    max-width: 800px;
+    margin: 28px auto 80px;
+    background: var(--paper-bg);
+    padding: 56px 64px 64px;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.15), 0 0 0 1px rgba(0,0,0,0.04);
+    line-height: 1.55;
+    font-size: 15.5px;
+  }
+  @media (max-width: 640px) {
+    .page { padding: 32px 22px; margin: 0; box-shadow: none; }
+  }
+  .arxiv-id {
+    font-family: "Courier New", monospace;
+    font-size: 11px;
+    color: var(--muted);
+    text-align: right;
+    margin-bottom: 18px;
+  }
+  h1.title {
+    text-align: center;
+    font-size: 22px;
+    font-weight: 700;
+    line-height: 1.35;
+    margin: 0 0 4px;
+  }
+  .subtitle {
+    text-align: center;
+    font-size: 15px;
+    font-style: italic;
+    color: var(--muted);
+    margin: 0 0 22px;
+  }
+  .authors {
+    text-align: center;
+    font-size: 15px;
+    margin-bottom: 2px;
+  }
+  .authors .name { font-weight: 600; }
+  .affil {
+    text-align: center;
+    font-size: 13px;
+    font-style: italic;
+    color: var(--muted);
+    margin-bottom: 4px;
+  }
+  .date {
+    text-align: center;
+    font-size: 12.5px;
+    color: var(--muted);
+    margin-bottom: 26px;
+  }
+  .abstract-block {
+    margin: 0 26px 22px;
+    padding-top: 14px;
+    border-top: 1px solid #ccc;
+  }
+  .abstract-label {
+    font-weight: 700;
+    font-size: 13px;
+    letter-spacing: 0.02em;
+  }
+  .abstract-text {
+    font-size: 13.8px;
+    text-align: justify;
+    margin-top: 6px;
+  }
+  .keywords {
+    font-size: 12.8px;
+    margin: 12px 26px 26px;
+    color: var(--muted);
+  }
+  .keywords b { color: var(--ink); }
+  hr.top-rule {
+    border: none;
+    border-top: 1px solid var(--rule);
+    margin: 0 0 26px;
+  }
+  h2 {
+    font-size: 16px;
+    margin: 34px 0 10px;
+    border-bottom: none;
+  }
+  h3 {
+    font-size: 14px;
+    font-style: italic;
+    margin: 20px 0 8px;
+  }
+  p { text-align: justify; margin: 0 0 12px; }
+  .num { font-variant-numeric: tabular-nums; }
+  figure {
+    margin: 22px 0;
+    text-align: center;
+  }
+  figcaption {
+    font-size: 12.5px;
+    color: var(--muted);
+    margin-top: 8px;
+    text-align: left;
+    padding: 0 6%;
+  }
+  figcaption b { color: var(--ink); }
+  table {
+    border-collapse: collapse;
+    width: 100%;
+    margin: 14px 0 6px;
+    font-size: 13px;
+  }
+  caption {
+    caption-side: top;
+    text-align: left;
+    font-size: 12.5px;
+    color: var(--muted);
+    margin-bottom: 6px;
+  }
+  th, td {
+    border-top: 1px solid var(--table-line);
+    border-bottom: 1px solid var(--table-line);
+    padding: 6px 8px;
+    text-align: left;
+    vertical-align: top;
+  }
+  thead th {
+    border-top: 2px solid var(--rule);
+    border-bottom: 1px solid var(--rule);
+    font-weight: 700;
+  }
+  tbody tr:last-child td { border-bottom: 2px solid var(--rule); }
+  code, .mono {
+    font-family: "Courier New", monospace;
+    font-size: 0.92em;
+    background: #f2f2f2;
+    padding: 0 3px;
+    border-radius: 2px;
+  }
+  .eqn {
+    text-align: center;
+    font-style: italic;
+    margin: 16px 0;
+    font-size: 14.5px;
+  }
+  ol.refs {
+    padding-left: 0;
+    list-style: none;
+    font-size: 12.8px;
+  }
+  ol.refs li {
+    margin-bottom: 8px;
+    padding-left: 2em;
+    text-indent: -2em;
+  }
+  .footnote {
+    font-size: 12px;
+    color: var(--muted);
+    border-top: 1px solid #ccc;
+    padding-top: 8px;
+    margin-top: 40px;
+  }
+  a { color: var(--link); text-decoration: none; }
+  a:hover { text-decoration: underline; }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <div class="arxiv-id">arXiv:2609.XXXXX [cs.OS] &nbsp;·&nbsp; preprint</div>
+
+  <h1 class="title">OpenAlexParkOS: A Four-Tier Ontological Architecture<br>for Sovereign-Directed, AI-Assisted Operating-System Pedagogy</h1>
+  <p class="subtitle">The Park&ndash;Lee Spacetime Model of CreOS, EthOS, LogOS, and PathOS in an 8-bit Teaching Environment</p>
+
+  <p class="authors"><span class="name">David Ye Joon Park</span><sup>1</sup></p>
+  <p class="affil"><sup>1</sup>OpenAlexParkOS Project (Independent Research)</p>
+  <p class="date">September 2026</p>
+
+  <div class="abstract-block">
+    <span class="abstract-label">Abstract</span>
+    <p class="abstract-text">
+    We present <b>OpenAlexParkOS</b>, an abridged operating-systems curriculum and reference implementation
+    designed to introduce core OS concepts &mdash; memory, processes, scheduling, and I/O &mdash; to early-childhood
+    learners (nominally age five) and their families through an 8-bit teaching machine. The system is organized
+    around a four-tier ontological architecture we call the <b>Park&ndash;Lee Spacetime</b> model, comprising
+    <span class="mono">creos/</span> (a human-only declarative root), <span class="mono">ethos/</span> (a
+    human-authored, AI-readable ethical framework), <span class="mono">logos/</span> (a human-authored, AI-readable
+    logical and architectural specification), and <span class="mono">pathos/</span> (an AI-directed generative
+    domain). Each tier fixes a distinct scope of agency and a distinct permission level &mdash;
+    <i>forbidden</i>, <i>read-only</i>, or <i>directed-generative</i> &mdash; that an AI collaborator may hold with
+    respect to it, so that architectural governance is enforced by directory-level structure rather than by
+    convention alone. We map this structure onto a pedagogical relationship in which the adult family member acts
+    as <b>Sovereign</b> (the human controller who instantiates <span class="mono">creos/</span>,
+    <span class="mono">ethos/</span>, and <span class="mono">logos/</span>) and the child acts as an
+    <b>Independent Subject</b> who explores, plays in, and gradually authors within the AI-directed
+    <span class="mono">pathos/</span> layer. We describe the 8-bit machine model chosen for tractability and
+    visual legibility, the resulting directory and permission scheme, and the design rationale connecting each
+    tier to a corresponding concern in conventional operating-systems theory (policy, mechanism, and generative
+    surface). We conclude with a discussion of the model's limitations and directions for empirical evaluation
+    with child learners.
+    </p>
+  </div>
+
+  <p class="keywords"><b>Keywords:</b> operating systems education, human-in-the-loop AI governance, capability-based
+  access control, child-directed computing, 8-bit architecture, AI-assisted curriculum design.</p>
+
+  <hr class="top-rule">
+
+  <h2><span class="num">1.</span> Introduction</h2>
+  <p>
+  Operating-systems instruction is traditionally deferred to undergraduate computer science, on the premise that
+  concepts such as address spaces, scheduling, and privilege separation require substantial mathematical and
+  programming maturity. OpenAlexParkOS is a case study in relaxing that premise: we ask what remains true and
+  teachable about an operating system when its word size is reduced to 8 bits, its address space to a few hundred
+  cells, and its explanation to the vocabulary of a five-year-old, while an AI collaborator handles the
+  generative and explanatory load under fixed human-authored constraints.
+  </p>
+  <p>
+  The central engineering problem this raises is not instructional but architectural: how does a household deploy
+  an AI system into a child's learning environment while keeping the values, rules, and safety boundaries of that
+  environment strictly outside the AI's authority to alter? Our answer is to make that boundary a property of the
+  file system and the permission model, not merely a prompt or a policy document. We call the resulting four-tier
+  structure the <b>Park&ndash;Lee Spacetime</b> architecture, and we use it as the organizing principle for both
+  the software repository and the pedagogical relationship it encodes.
+  </p>
+
+  <h2><span class="num">2.</span> Related Work</h2>
+  <p>
+  Our approach draws on three separate lineages. First, constructionist computing education &mdash; Papert's
+  LOGO environment and its description in <i>Mindstorms</i> [1], and its modern descendants such as Scratch and
+  ScratchJr [2] &mdash; established that young children can build genuine mental models of computational
+  processes when given a sufficiently concrete, manipulable representation. Second, classical operating-systems
+  theory [3, 4] separates <i>mechanism</i> (how something is done) from <i>policy</i> (what should be done), and
+  separately, capability-based and ring-structured privilege models restrict which subjects may modify which
+  resources. Third, current work on human oversight of AI systems argues for constraining an AI's write access to
+  a bounded, auditable surface while keeping foundational specifications under exclusively human control. The
+  Park&ndash;Lee Spacetime architecture is, in effect, an application of the second and third lineages to the
+  content and delivery mechanism of the first: a child's OS curriculum, generated and narrated by an AI that
+  cannot touch the curriculum's declared values or rules.
+  </p>
+
+  <h2><span class="num">3.</span> The Park&ndash;Lee Spacetime Architecture</h2>
+  <p>
+  The architecture is a strict derivation chain of four domains. Each domain is instantiated by the one before it,
+  and agency narrows &mdash; from purely human, to human-authored-but-AI-legible, to AI-directed &mdash; as the
+  chain proceeds:
+  </p>
+  <div class="eqn">Human() &rarr; creos/ &rarr; ethos/ &rarr; logos/ &rarr; pathos/</div>
+
+  <figure>
+    <svg viewBox="0 0 720 190" width="100%" height="auto" role="img" aria-labelledby="fig1title">
+      <title id="fig1title">Derivation chain from Human through CreOS, EthOS, LogOS to PathOS</title>
+      <defs>
+        <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+          <path d="M0,0 L10,5 L0,10 z" fill="#333"></path>
+        </marker>
+      </defs>
+      <!-- connecting line -->
+      <line x1="95" y1="95" x2="625" y2="95" stroke="#333" stroke-width="1.5"></line>
+      <!-- arrowheads segments -->
+      <line x1="95" y1="95" x2="225" y2="95" stroke="#333" stroke-width="1.5" marker-end="url(#arrow)"></line>
+      <line x1="235" y1="95" x2="365" y2="95" stroke="#333" stroke-width="1.5" marker-end="url(#arrow)"></line>
+      <line x1="375" y1="95" x2="505" y2="95" stroke="#333" stroke-width="1.5" marker-end="url(#arrow)"></line>
+      <line x1="515" y1="95" x2="625" y2="95" stroke="#333" stroke-width="1.5" marker-end="url(#arrow)"></line>
+
+      <!-- Human -->
+      <rect x="10" y="70" width="90" height="50" rx="8" fill="#2b4c7e" stroke="#4a90e2" stroke-width="2"></rect>
+      <text x="55" y="100" text-anchor="middle" fill="#fff" font-size="13" font-family="Georgia, serif">Human()</text>
+
+      <!-- Creos -->
+      <rect x="150" y="60" width="100" height="70" rx="8" fill="#2b4c7e" stroke="#4a90e2" stroke-width="2"></rect>
+      <text x="200" y="90" text-anchor="middle" fill="#fff" font-size="12.5" font-family="Georgia, serif">creos/</text>
+      <text x="200" y="107" text-anchor="middle" fill="#dce6f5" font-size="10" font-family="Georgia, serif">Declarative Root</text>
+
+      <!-- Ethos -->
+      <rect x="290" y="60" width="100" height="70" rx="8" fill="#2b4c7e" stroke="#4a90e2" stroke-width="2"></rect>
+      <text x="340" y="90" text-anchor="middle" fill="#fff" font-size="12.5" font-family="Georgia, serif">ethos/</text>
+      <text x="340" y="107" text-anchor="middle" fill="#dce6f5" font-size="10" font-family="Georgia, serif">Ethical Framework</text>
+
+      <!-- Logos -->
+      <rect x="430" y="60" width="100" height="70" rx="8" fill="#2b4c7e" stroke="#4a90e2" stroke-width="2"></rect>
+      <text x="480" y="90" text-anchor="middle" fill="#fff" font-size="12.5" font-family="Georgia, serif">logos/</text>
+      <text x="480" y="107" text-anchor="middle" fill="#dce6f5" font-size="10" font-family="Georgia, serif">Logic &amp; Schema</text>
+
+      <!-- Pathos -->
+      <rect x="570" y="55" width="115" height="80" rx="8" fill="#6c3483" stroke="#bb8fce" stroke-width="2"></rect>
+      <text x="627" y="88" text-anchor="middle" fill="#fff" font-size="12.5" font-family="Georgia, serif">pathos/</text>
+      <text x="627" y="104" text-anchor="middle" fill="#f0e2f7" font-size="10" font-family="Georgia, serif">Generative Domain</text>
+      <text x="627" y="118" text-anchor="middle" fill="#f0e2f7" font-size="9.5" font-family="Georgia, serif">(AI-directed)</text>
+
+      <text x="55" y="150" text-anchor="middle" font-size="10.5" fill="#333" font-family="Georgia, serif">Sovereign</text>
+      <text x="627" y="160" text-anchor="middle" font-size="10.5" fill="#333" font-family="Georgia, serif">Independent Subject</text>
+      <text x="627" y="174" text-anchor="middle" font-size="10.5" fill="#333" font-family="Georgia, serif">plays here</text>
+    </svg>
+    <figcaption><b>Figure 1.</b> The Park&ndash;Lee Spacetime derivation chain. Blue nodes are instantiated
+    exclusively by the human Sovereign; the purple node is the AI-directed generative surface in which the child,
+    as Independent Subject, primarily interacts.</figcaption>
+  </figure>
+
+  <h3>3.1 CreOS &mdash; the Declarative Root</h3>
+  <p>
+  <span class="mono">creos/</span> holds the axioms of the system: the small set of non-negotiable statements
+  that define what the household's OpenAlexParkOS is for and whom it serves. It is written and revised solely by
+  the human Sovereign and is <i>forbidden</i> to the AI collaborator &mdash; not merely unwritable in practice,
+  but outside the AI's scope of consideration entirely, in the way firmware is outside the scope of an
+  application. Every other tier exists to instantiate, elaborate, or express something already settled here.
+  </p>
+
+  <h3>3.2 EthOS &mdash; Ethical Instantiation</h3>
+  <p>
+  <span class="mono">ethos/</span> takes the axioms of <span class="mono">creos/</span> and expresses them as
+  operating values and boundaries: what the system should protect, what it should never do, and how it should
+  treat the child as a learner. It remains human-authored, but unlike <span class="mono">creos/</span> it is
+  <i>read-only</i> to the AI &mdash; the AI may consult it as a constant frame of reference when generating
+  content in <span class="mono">pathos/</span>, but cannot edit it.
+  </p>
+
+  <h3>3.3 LogOS &mdash; Logical Architecture</h3>
+  <p>
+  <span class="mono">logos/</span> renders <span class="mono">ethos/</span> into operational form: protocols,
+  schemas, and the rules that govern how the 8-bit machine behaves, how lessons are sequenced, and how the AI is
+  permitted to respond. Like <span class="mono">ethos/</span>, it is human-authored and read-only to the AI. Where
+  <span class="mono">ethos/</span> supplies the "why," <span class="mono">logos/</span> supplies the checkable
+  "how" &mdash; the closest analogue, in conventional OS terms, to a kernel's policy and interface contracts.
+  </p>
+
+  <h3>3.4 PathOS &mdash; the Generative, AI-Directed Domain</h3>
+  <p>
+  <span class="mono">pathos/</span> is the one tier in which the AI has generative authority: lesson
+  narration, procedurally varied practice problems, visual and sound output from the 8-bit machine, and adaptive
+  pacing. This authority is bounded on every side by the tiers above it &mdash; the AI can create freely inside
+  the space those tiers define, but cannot widen that space itself. This is also the tier the child, as
+  Independent Subject, experiences directly.
+  </p>
+
+  <table>
+    <caption><b>Table 1.</b> Domain, agency, and AI access across the four tiers.</caption>
+    <thead>
+      <tr><th>Domain</th><th>Agency</th><th>Function</th><th>AI access</th></tr>
+    </thead>
+    <tbody>
+      <tr><td><span class="mono">creos/</span></td><td>Human (Sovereign)</td><td>Declarative root; unalterable foundation</td><td><b>Forbidden</b></td></tr>
+      <tr><td><span class="mono">ethos/</span></td><td>Human (Sovereign)</td><td>Values, character, boundaries</td><td><b>Read-only</b></td></tr>
+      <tr><td><span class="mono">logos/</span></td><td>Human (Sovereign)</td><td>Schemas, protocols, governance rules</td><td><b>Read-only</b></td></tr>
+      <tr><td><span class="mono">pathos/</span></td><td>AI (directed)</td><td>Generative lesson content and artifacts</td><td><b>Directed / generative</b></td></tr>
+    </tbody>
+  </table>
+
+  <h2><span class="num">4.</span> Design Philosophy and Motivation</h2>
+  <p>
+  The derivation chain is deliberately one-directional and asymmetric: nothing downstream can rewrite something
+  upstream. The project's stated design philosophy draws this pattern from the vine-and-branches image in
+  John&nbsp;15:5 &mdash; "I am the vine, you are the branches" &mdash; in which fruit-bearing (here, the
+  generative work of <span class="mono">pathos/</span>) is possible only through an unbroken connection back
+  to the root, and cannot substitute for or redefine the root itself. Practically, this motivates a hard
+  architectural rule rather than a soft one: governance is enforced by what the AI is structurally permitted to
+  read and write, not only by what it is instructed to do.
+  </p>
+
+  <h2><span class="num">5.</span> The 8-bit Teaching Machine</h2>
+  <p>
+  OpenAlexParkOS targets a minimal virtual machine with an 8-bit word, a small (single-page, 256-cell) address
+  space, an 8-entry instruction set, and a handful of memory-mapped registers driving a simple visual/audio
+  display. Constraining the machine to 8 bits serves three pedagogical goals:
+  </p>
+  <p>
+  <b>(a) Countability.</b> A five-year-old can count to 255, or at least accept it as "a full box of blocks,"
+  giving memory a concrete size rather than an abstract one.<br>
+  <b>(b) Visibility.</b> Every register and memory cell can be rendered on-screen simultaneously as a small grid
+  of blocks or lights, so state changes are watched rather than imagined.<br>
+  <b>(c) Direct correspondence.</b> Each of the machine's few instructions maps to a single physical action in a
+  companion unplugged activity (e.g., a physical box labeled with the byte, a card with the opcode), letting the
+  family enact a "process" or an "interrupt" by hand before seeing it on screen.
+  </p>
+  <p>
+  The machine's specification, instruction set, and memory map are authored in <span class="mono">logos/</span>
+  and are therefore fixed with respect to the AI: the AI may narrate, animate, and vary <i>exercises</i> that use
+  the machine, but may not change what the machine is.
+  </p>
+
+  <h2><span class="num">6.</span> The Sovereign / Independent-Subject Pedagogical Model</h2>
+  <p>
+  We map the architecture directly onto the family's roles. The adult (or adults) instantiate
+  <span class="mono">creos/</span>, <span class="mono">ethos/</span>, and <span class="mono">logos/</span> for
+  their household &mdash; deciding, once, what the system is for and what it will never do &mdash; and act as
+  <b>Sovereign</b> over the whole system thereafter. The child is the <b>Independent Subject</b>: free to explore,
+  make mistakes, ask questions, and direct their own play inside <span class="mono">pathos/</span>, without that
+  freedom ever extending to the layers that define the system's values or rules. This gives the child real agency
+  &mdash; the AI genuinely follows the child's curiosity within the sandbox &mdash; while keeping the boundary of
+  that sandbox a matter of settled parental authorship rather than of the AI's momentary judgment.
+  </p>
+
+  <h2><span class="num">7.</span> Discussion and Limitations</h2>
+  <p>
+  The architecture's central claim is structural, not pedagogical: it does not by itself guarantee that a
+  five-year-old will learn OS concepts, only that whatever the AI generates while teaching them stays within
+  human-authored bounds. Evaluating the pedagogical claim requires longitudinal study with child participants and
+  is outside the scope of this paper. We also note that the 8-bit machine is a teaching model, not a production
+  OS, and that "read-only" and "forbidden" are currently enforced by file-system permissions and prompt-level
+  instruction rather than by a formally verified reference monitor; hardening this boundary with OS-level
+  capability enforcement is future work.
+  </p>
+
+  <h2><span class="num">8.</span> Conclusion</h2>
+  <p>
+  OpenAlexParkOS proposes that an AI-assisted, child-directed operating-systems curriculum can be made both
+  concrete (via an 8-bit teaching machine) and safely governed (via the Park&ndash;Lee Spacetime's four-tier
+  permission model) at the same time. By fixing agency to directory structure &mdash; forbidden, read-only, or
+  directed-generative &mdash; the architecture keeps the household's declared values and rules outside the AI's
+  reach while still giving the AI genuine creative latitude to teach within them.
+  </p>
+
+  <h2>Acknowledgments</h2>
+  <p style="font-size:13px;">
+  This manuscript was drafted with the assistance of an AI writing collaborator (Claude, Anthropic) under the
+  direction and sole authorship intent of David Ye Joon Park, who retains ownership of the Park&ndash;Lee
+  Spacetime framework described herein.
+  </p>
+
+  <h2>References</h2>
+  <ol class="refs">
+    <li>[1] S. Papert, <i>Mindstorms: Children, Computers, and Powerful Ideas</i>. Basic Books, 1980.</li>
+    <li>[2] M. Resnick et al., "Scratch: Programming for All," <i>Communications of the ACM</i>, 52(11), 2009.</li>
+    <li>[3] A. Silberschatz, P. B. Galvin, and G. Gagne, <i>Operating System Concepts</i>, 10th ed. Wiley, 2018.</li>
+    <li>[4] A. S. Tanenbaum and H. Bos, <i>Modern Operating Systems</i>, 4th ed. Pearson, 2014.</li>
+    <li>[5] The Holy Bible, John 15:5 (source of the vine-and-branches derivation motif referenced in Section 4).</li>
+  </ol>
+
+  <div class="footnote">
+  Preprint prepared for arXiv (cs.OS / cs.CY cross-list suggested). Corresponding author: David Ye Joon Park.
+  </div>
+
+</div>
+</body>
+</html>
