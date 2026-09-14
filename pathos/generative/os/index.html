@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
+  <title>μOS</title>
+  <meta name="description" content="μOS — the smallest desktop in the world. A minimal, self-generative education cloudOS." />
+  <link rel="stylesheet" href="./os.css" />
+</head>
+<body>
+  <div id="boot">
+    <div id="boot-mark"></div>
+    <div id="boot-title">μOS</div>
+  </div>
+
+  <button id="theme-toggle" aria-label="Toggle light and dark theme"></button>
+
+  <main id="desktop" hidden>
+    <div class="hud">
+      <span class="lit">μOS v0.1</span>
+      <span class="lit" id="hud-count"></span>
+      <span>OFFLINE</span>
+      <span>WIDEN: FALSE</span>
+    </div>
+
+    <div id="icons" class="tiles"></div>
+
+    <footer class="os-foot">
+      <a href="https://yp358.github.io/" target="_blank" rel="noopener"><b>Ye-Joon &quot;David&quot; Park-Lee</b></a>
+      — All rights reserved by Ye-Joon &quot;David&quot; Park-Lee,
+      <a href="mailto:yp358@cornell.edu">yp358@cornell.edu</a>
+    </footer>
+  </main>
+
+  <section id="app-screen" hidden>
+    <div class="win-bar">
+      <button id="home-btn" aria-label="Home">◀</button>
+      <span class="win-title" id="app-title"></span>
+      <span class="win-dots"><i></i><i></i><i></i></span>
+    </div>
+    <div id="app-body"></div>
+  </section>
+
+  <script type="module" src="./os.js"></script>
+</body>
+</html>
