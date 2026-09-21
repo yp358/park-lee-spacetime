@@ -1,5 +1,0 @@
-[
-  { "id": "draw", "name": "Draw", "emoji": "🖍️", "color": "#ff5a5f", "entry": "draw.js" },
-  { "id": "count", "name": "Count", "emoji": "🔢", "color": "#3ec9ff", "entry": "count.js" },
-  { "id": "sounds", "name": "Animals", "emoji": "🐸", "color": "#7ed957", "entry": "sounds.js" }
-]
